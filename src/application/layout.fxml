@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -43,7 +42,7 @@
             <Button layoutX="284.0" layoutY="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Display Flights" />
             <Button layoutX="284.0" layoutY="223.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="All Passengers All Flights" />
             <Button layoutX="284.0" layoutY="235.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="All Passengers Specific Flight" />
-            <Button layoutX="284.0" layoutY="248.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="100.0" text="Exit" />
+            <Button layoutX="284.0" layoutY="248.0" mnemonicParsing="false" onAction="#exit" prefHeight="15.0" prefWidth="100.0" text="Exit" />
          </children>
       </VBox>
    </center>
