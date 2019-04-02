@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mirman Gragg Airline Reservationas">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Add New Flight" />
+            <Button layoutX="284.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Make Reservation" />
+            <Button layoutX="284.0" layoutY="198.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Display Passengers" />
+            <Button layoutX="284.0" layoutY="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Display Flights" />
+            <Button layoutX="284.0" layoutY="223.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="All Passengers All Flights" />
+            <Button layoutX="284.0" layoutY="235.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="All Passengers Specific Flight" />
+            <Button layoutX="284.0" layoutY="248.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="100.0" text="Exit" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
