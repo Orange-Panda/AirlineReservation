@@ -67,22 +67,29 @@ public class NewFlightController
         try
         {
          PrintWriter output = new PrintWriter(file);
-         output.print("Flight#   FDate   DTime   ATime  DepartCity  DestCity  AvailableSeats \n" +
-                      "AA1150    20Dec15 23:00   02:00  FORT WAYNE  ORLANDO        70    \n" +
-                      "AA1230    5Nov15  11:30   14:00  BLACKSBURG  BOCA RATON     25    \n" +
-                      "AA1140    4Jan15  07:00   11:00  SEATTEL	    PHONEIX        42    \n" +
-                      ""+flightNum[q1]+"    "+""+flightDate[q2]+"    "+""+departureTime[q3]+"    "+""+arrivalTime[q4]+"    "+""+departCity[q5]+"    "+""+destCity[q6]+"    "+""+availableSeats[q7]);
+         output.print("\n" +
+                      "\n" +
+                      "\n" +
+                      "\n" +
+                      "\n" +
+                      ""+inputFlightNumber.getText()+"    "+
+                      ""+inputFlightDate.getValue()+"    "+
+                      ""+LocalTime.of(Integer.parseInt(inputDepartureHour.getText()), Integer.parseInt(inputDepartureMinute.getText()))+"    "+
+                      ""+LocalTime.of(Integer.parseInt(inputArrivalHour.getText()), Integer.parseInt(inputArrivalMinute.getText()))+"    "+
+                      ""+inputDepartureCity.getText()+"    "+
+                      ""+inputArrivalCity.getText()+"    "+
+                      ""+Integer.parseInt(inputNumOfSeats.getText()) \n);
          output.close();
         }
-        catch(Exception ex)
+        catch(Exception fileNotFoundFlights)
         {
-         System.err.println(ex.getMessage());
+         fileNotFoundFlights.printStackTrace();
         }
     }
     
     public static void newFlightFileCreation()
     {
-        File file = new File("Your Flight:"+k);
+        File file = new File("Your Flight:"+inputFlightNumber.getText());
         try
         {
          PrintWriter output = new PrintWriter(file);
@@ -98,9 +105,9 @@ public class NewFlightController
                       "10    A B   C D E   F G");
          output.close();
         }
-        catch(Exception ex)
+        catch(Exception fileNotFoundNewFlight)
         {
-         System.err.println(ex.getMessage());
+         fileNotFoundNewFlight.printStackTrace();
         }
     }	
     */
