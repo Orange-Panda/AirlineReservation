@@ -29,14 +29,14 @@
       </MenuBar>
    </top>
    <center>
-      <VBox id="mainMenu" alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mirman Gragg Airline Reservationas">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Add New Flight" />
+            <Button mnemonicParsing="false" onAction="#changeScene" prefHeight="30.0" prefWidth="200.0" text="Add New Flight" />
             <Button layoutX="284.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Make Reservation" />
             <Button layoutX="284.0" layoutY="198.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Display Passengers" />
             <Button layoutX="284.0" layoutY="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" text="Display Flights" />
