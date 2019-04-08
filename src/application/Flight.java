@@ -5,7 +5,7 @@ import java.time.*;
 public class Flight 
 {
 	//Private Flight variables
-	private int flightNumber;
+	private String flightNumber;
 	private LocalDate flightDate;
 	private LocalTime arrivalTime;
 	private LocalTime departureTime;
@@ -13,13 +13,24 @@ public class Flight
 	private String destinationCity;
 	private int seatsAvailable;
 	
+	public Flight(String flightNumber, LocalDate flightDate, LocalTime arrivalTime, LocalTime departureTime, String departureCity, String destinationCity, int seatsAvailable)
+	{
+		setFlightNumber(flightNumber);
+		setFlightDate(flightDate);
+		setArrivalTime(arrivalTime);
+		setDepartureTime(departureTime);
+		setDepartureCity(departureCity);
+		setDestinationCity(destinationCity);
+		setSeatsAvailable(seatsAvailable);
+	}
+	
 	// Get and Set Methods
-	public int getFlightNumber() 
+	public String getFlightNumber() 
 	{
 		return flightNumber;
 	}
 	
-	public void setFlightNumber(int flightNumber) 
+	public void setFlightNumber(String flightNumber) 
 	{
 		this.flightNumber = flightNumber;
 	}
