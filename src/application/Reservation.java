@@ -8,6 +8,14 @@ public class Reservation
 	private String seatNumber;
 	private String flightNumber;
 	
+	public Reservation(String passengerID, String passengerName, String seatNumber, String flightNumber)
+	{
+		setPassengerID(passengerID);
+		setPassengerName(passengerName);
+		setSeatNumber(seatNumber);
+		setFlightNumber(flightNumber);
+	}
+	
 	//Get and Set Methods
 	public String getPassengerID() 
 	{

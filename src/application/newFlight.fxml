@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewFlightController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewFlightController">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="3.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,7 +46,12 @@
                   <TextField fx:id="inputArrivalMinute" maxWidth="30.0" promptText="30" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#addFlight" text="Submit" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#addFlight" text="Create Flight" />
+                  <Button mnemonicParsing="false" text="Return to Menu" textFill="#6e1414" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="20.0" top="20.0" />

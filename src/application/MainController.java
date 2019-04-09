@@ -5,18 +5,18 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
-public class Controller 
+public class MainController 
 {
 	public void exit()
 	{
 		Platform.exit();
 	}
 	
-	public void changeScene()
+	public void changeScene(String sceneToChangeTo)
 	{
 	    try 
 	    {
-	    	Parent newRoot = FXMLLoader.load(getClass().getResource("newFlight.fxml"));
+	    	Parent newRoot = FXMLLoader.load(getClass().getResource(sceneToChangeTo + ".fxml"));
 	        
 	        Main.getScene().setRoot(newRoot);
 	    } 
@@ -24,5 +24,15 @@ public class Controller
 	    {
 	        e1.printStackTrace();
 	    }
+	}
+	
+	public void goToCreateFlight()
+	{
+	    changeScene("newFlight");
+	}
+	
+	public void goToCreateReservation()
+	{
+	    changeScene("newReservation");
 	}
 }
