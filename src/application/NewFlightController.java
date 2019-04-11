@@ -60,8 +60,8 @@ public class NewFlightController
     	}
     }
     
-    /*
-    public static void updateFlightsTxt()
+    
+    public void updateFlightsTxt()
     {
         File file = new File("flights.txt");
         try
@@ -78,7 +78,7 @@ public class NewFlightController
                       ""+LocalTime.of(Integer.parseInt(inputArrivalHour.getText()), Integer.parseInt(inputArrivalMinute.getText()))+"    "+
                       ""+inputDepartureCity.getText()+"    "+
                       ""+inputArrivalCity.getText()+"    "+
-                      ""+Integer.parseInt(inputNumOfSeats.getText()) \n);
+                      ""+Integer.parseInt(inputNumOfSeats.getText())+"\n");
          output.close();
         }
         catch(Exception fileNotFoundFlights)
@@ -87,7 +87,7 @@ public class NewFlightController
         }
     }
     
-    public static void newFlightFileCreation()
+    public void newFlightFileCreation()
     {
         File file = new File("Your Flight:"+inputFlightNumber.getText());
         try
@@ -110,5 +110,5 @@ public class NewFlightController
          fileNotFoundNewFlight.printStackTrace();
         }
     }	
-    */
+    
 }
