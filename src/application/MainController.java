@@ -35,4 +35,8 @@ public class MainController
 	{
 	    changeScene("newReservation");
 	}
+	public void goToDisplayFlights()
+	{
+		changeScene("displayFlights");
+	}
 }

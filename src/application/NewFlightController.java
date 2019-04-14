@@ -53,6 +53,8 @@ public class NewFlightController
     				Integer.parseInt(inputNumOfSeats.getText())
     				);
     		System.out.println("All guud");
+    		updateFlightsTxt();
+    		newFlightFileCreation();
     	}
     	catch(Exception e)
     	{
