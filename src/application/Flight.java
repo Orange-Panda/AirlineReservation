@@ -15,6 +15,9 @@ public class Flight
 	
 	public Flight(String flightNumber, LocalDate flightDate, LocalTime arrivalTime, LocalTime departureTime, String departureCity, String destinationCity, int seatsAvailable)
 	{
+		flightNumber = flightNumber.replaceAll(" ", "").toUpperCase();
+		departureCity = departureCity.replaceAll(" ", "").toUpperCase();
+		destinationCity = destinationCity.replaceAll(" ", "").toUpperCase();
 		setFlightNumber(flightNumber);
 		setFlightDate(flightDate);
 		setArrivalTime(arrivalTime);
@@ -24,6 +27,38 @@ public class Flight
 		setSeatsAvailable(seatsAvailable);
 	}
 	
+	public Flight(String flightNumber, String flightDate, String departureTime, String arrivalTime, String departureCity, String destinationCity, String seatsAvailable) 
+	{
+		seatsAvailable = seatsAvailable.replaceAll(" ", "");
+		arrivalTime = arrivalTime.replaceAll(" ", "");
+		departureTime = departureTime.replaceAll(" ", "");
+		flightDate = flightDate.replaceAll(" ", "");
+		flightNumber = flightNumber.replaceAll(" ", "").toUpperCase();
+		departureCity = departureCity.replaceAll(" ", "").toUpperCase();
+		destinationCity = destinationCity.replaceAll(" ", "").toUpperCase();
+		
+		//Non parse
+		setFlightNumber(flightNumber);
+		setDepartureCity(departureCity);
+		setDestinationCity(destinationCity);
+		
+		try
+		{
+			setSeatsAvailable(Integer.parseInt(seatsAvailable));
+			setArrivalTime(LocalTime.parse(arrivalTime));
+			setDepartureTime(LocalTime.parse(departureTime));
+			setFlightDate(LocalDate.parse(flightDate));
+		}
+		catch(Exception e)
+		{
+			System.out.printf("Was unable to parse strings when creating flight%n");
+			setArrivalTime(LocalTime.of(0, 0));
+			setDepartureTime(LocalTime.of(0,0));
+			setFlightDate(LocalDate.of(0,0,0));
+			setSeatsAvailable(0);
+		}
+	}
+
 	// Get and Set Methods
 	public String getFlightNumber() 
 	{

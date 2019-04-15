@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewFlightController">
@@ -24,38 +25,59 @@
             <TextField fx:id="inputArrivalCity" alignment="CENTER" layoutX="235.0" layoutY="152.0" maxWidth="150.0" promptText="Lakeland" />
             <Text layoutX="299.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Seats" />
             <TextField fx:id="inputNumOfSeats" alignment="CENTER" layoutX="235.0" layoutY="194.0" maxWidth="150.0" promptText="55" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="65.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure Time" />
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="inputDepartureHour" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="30.0" prefWidth="40.0" promptText="9" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                              <TextField fx:id="inputDepartureMinute" maxWidth="-Infinity" minWidth="30.0" prefWidth="40.0" promptText="45" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival Time" />
+                        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="inputArrivalHour" alignment="CENTER_RIGHT" maxWidth="-Infinity" minWidth="30.0" prefWidth="40.0" promptText="11" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
+                              <TextField fx:id="inputArrivalMinute" maxWidth="-Infinity" minWidth="30.0" prefWidth="40.0" promptText="30" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
             <Text layoutX="299.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Date" />
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
                   <DatePicker fx:id="inputFlightDate" promptText="Enter date..." />
                </children>
             </HBox>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Departure Time" />
-            <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="inputDepartureHour" alignment="CENTER_RIGHT" maxWidth="30.0" promptText="9" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
-                  <TextField fx:id="inputDepartureMinute" maxWidth="30.0" promptText="45" />
-               </children>
-            </HBox>
-            <Text layoutX="299.0" layoutY="351.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Arrival Time" />
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="360.0" prefHeight="60.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="inputArrivalHour" alignment="CENTER_RIGHT" maxWidth="30.0" promptText="11" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" />
-                  <TextField fx:id="inputArrivalMinute" maxWidth="30.0" promptText="30" />
-               </children>
-            </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
+                  <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Main Menu" textFill="#6e1414" />
                   <Button mnemonicParsing="false" onAction="#addFlight" text="Add Flight" textFill="#4f6b4f" />
-                  <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" textFill="#6e1414" />
+                  <Button layoutX="190.0" layoutY="10.0" mnemonicParsing="false" onAction="#resetFlightsTxt" text="Reset File" textFill="RED" />
                </children>
             </HBox>
+            <TextField fx:id="console" alignment="CENTER" editable="false" minHeight="40.0" promptText="Input data and hit add flight to proceed">
+               <font>
+                  <Font size="12.0" />
+               </font></TextField>
          </children>
          <padding>
-            <Insets bottom="20.0" top="20.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </VBox>
    </center>
    <top>

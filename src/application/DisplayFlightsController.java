@@ -20,11 +20,12 @@ public class DisplayFlightsController extends MainController
 		try
 		{
 			Scanner input= new Scanner(file);
+			flightData = "";
 			while (input.hasNextLine())
 			{
-				flightData = input.nextLine();
-				flightInfo.setText(flightData);
+				flightData += input.nextLine() + "\n";
 			}
+			flightInfo.setText(flightData);
 			input.close();
 		}
 		catch(Exception ex)
