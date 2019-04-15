@@ -1,13 +1,16 @@
 package application;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.*;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 
-public class NewFlightController 
+public class NewFlightController extends MainController
 {
     //initializes Arrays for Data
 	public static Flight[] flights = new Flight[10];
@@ -111,6 +114,10 @@ public class NewFlightController
         {
          fileNotFoundNewFlight.printStackTrace();
         }
-    }	
-    
+    }
+	
+	public void goToMainMenu()
+	{
+		changeScene("mainMenu");
+	}
 }

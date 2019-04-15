@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class NewReservationController 
+public class NewReservationController extends MainController
 {
     @FXML
     public TextField inputPassengerID;
@@ -31,4 +31,9 @@ public class NewReservationController
     		e.printStackTrace();
     	}
     }
+	
+	public void goToMainMenu()
+	{
+		changeScene("mainMenu");
+	}
 }

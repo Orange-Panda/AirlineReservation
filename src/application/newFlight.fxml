@@ -48,8 +48,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addFlight" text="Create Flight" />
-                  <Button mnemonicParsing="false" text="Return to Menu" textFill="#6e1414" />
+                  <Button mnemonicParsing="false" onAction="#addFlight" text="Add Flight" textFill="#4f6b4f" />
+                  <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" textFill="#6e1414" />
                </children>
             </HBox>
          </children>
