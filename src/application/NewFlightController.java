@@ -77,7 +77,7 @@ public class NewFlightController extends MainController
 			output.println(String.format(flightFileFormat, "Flight #", "Flight Date", "Departure", "Arrival", "Departure City", "Destination", "Seats"));
 			for(Flight flight : flights)
 			{
-				generateFlightSeatingFile(flight.getFlightNumber());
+				FlightSeating.generateFlightSeatingFile(flight);
 				output.println(String.format(flightFileFormat, 
 						flight.getFlightNumber(), flight.getFlightDate().toString(), flight.getDepartureTime().toString(), 
 						flight.getArrivalTime().toString(), flight.getDepartureCity(), flight.getDestinationCity(), flight.getSeatsAvailable()));
@@ -103,7 +103,7 @@ public class NewFlightController extends MainController
 			output.println(String.format(flightFileFormat, "Flight #", "Flight Date", "Departure", "Arrival", "Departure City", "Destination", "Seats"));
 			for(Flight flight : Flight.defaultFlights)
 			{
-				generateFlightSeatingFile(flight.getFlightNumber());
+				FlightSeating.generateFlightSeatingFile(flight);
 				output.println(String.format(flightFileFormat, 
 						flight.getFlightNumber(), flight.getFlightDate().toString(), flight.getDepartureTime().toString(), 
 						flight.getArrivalTime().toString(), flight.getDepartureCity(), flight.getDestinationCity(), flight.getSeatsAvailable()));
@@ -116,26 +116,6 @@ public class NewFlightController extends MainController
 		{
 			fileNotFoundFlights.printStackTrace();
 		}
-    }
-    
-    //Generates a seating chart file for the argument string.
-    public void generateFlightSeatingFile(String flightNumber)
-    {
-        File file = new File(flightNumber);
-        try
-        {
-        	PrintWriter output = new PrintWriter(file);
-        	output.print("");
-        	for(int i = 1; i <= 10; i++)
-        	{
-        		output.println(String.format("%2s A B   C D E   F G", i));
-        	}
-        	output.close();
-        }
-        catch(Exception e)
-        {
-        	e.printStackTrace();
-        }
     }
 	
 	public void goToMainMenu()

@@ -189,12 +189,13 @@ public class Flight
 		this.destinationCity = destinationCity;
 	}
 	
-	public int getSeatsAvailable() {
+	public int getSeatsAvailable() 
+	{
 		return seatsAvailable;
 	}
 	
 	public void setSeatsAvailable(int seatsAvailable) 
 	{
-		this.seatsAvailable = seatsAvailable;
+		this.seatsAvailable = Math.min(Math.abs(seatsAvailable), 70);
 	}
 }
