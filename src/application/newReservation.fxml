@@ -62,7 +62,7 @@
       </VBox>
    </left>
    <right>
-      <TextArea fx:id="console" maxWidth="350.0" wrapText="true" BorderPane.alignment="CENTER">
+      <TextArea fx:id="console" editable="false" maxWidth="350.0" wrapText="true" BorderPane.alignment="CENTER">
          <font>
             <Font name="Monospaced Regular" size="16.0" />
          </font>

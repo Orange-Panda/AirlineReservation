@@ -19,7 +19,7 @@
                <font>
                   <Font size="18.0" />
                </font></Text>
-            <TextArea fx:id="flightInfo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0" promptText="Press generate to view flights...">
+            <TextArea fx:id="flightInfo" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0" promptText="Press generate to view flights...">
                <font>
                   <Font name="Monospaced Regular" size="10.0" />
                </font></TextArea>

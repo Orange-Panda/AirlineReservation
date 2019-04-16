@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class FlightSeating 
 {
 	public static final String seatingFormat = "%2s -%1s-%1s-   %1s-%1s-%1s   -%1s-%1s-%n";
-	public static final String reservationFormat = "%8s  %4s  %16s  %16s%n"; //Flight, seat, name, id
+	public static final String reservationFormat = "%8s\t%4s\t%16s\t%16s%n"; //Flight, seat, name, id
 	
 	//Generates a seating chart file for the argument flight.
     public static void generateFlightSeatingFile(boolean[][] seating, String flightName)
@@ -233,5 +233,58 @@ public class FlightSeating
         {
         	return;
         }
+	}
+	
+	public static List<Reservation> parseReservationsTxt()
+	{
+        List<Reservation> reservations = new ArrayList<Reservation>();
+        
+		try(Scanner input = new Scanner(Paths.get("reservations.txt"), "UTF-8"))
+		{
+			try
+			{
+				//Skips the first few lines because their result is already accounted for.
+				input.nextLine();
+			}
+			catch(Exception e)
+			{
+				System.out.println("Insufficient lines found in flights.txt.");
+				return reservations;
+			}
+			
+			//For debug purposes
+			int lineNumber = 2;
+			
+			while (input.hasNextLine())
+			{
+				try
+				{
+					//For every line, use the tab character to extrapolate the data of the flight
+					String currentLine = input.nextLine();
+					String[] currentReserve = currentLine.split("\t");
+					for(int i = 0; i < currentReserve.length; i++)
+					{
+						currentReserve[i] = currentReserve[i].replaceAll(" ", "");
+					}
+					
+					reservations.add(new Reservation(
+		    				currentReserve[0], currentReserve[1], 
+		    				currentReserve[2], currentReserve[3]));
+					lineNumber++;
+				}
+				catch(Exception e)
+				{
+					System.out.printf("Invalid formatting in reservations.txt at index #%d - %s%n", lineNumber, e.getMessage());
+					lineNumber++;
+				}
+			}
+			input.close();
+		}
+		catch(Exception e)
+		{
+			System.out.printf("Was unable to parse reservations.txt: %s%n", e.getMessage());
+		}
+		
+		return reservations;
 	}
 }

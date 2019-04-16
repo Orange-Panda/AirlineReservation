@@ -9,10 +9,11 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SpecificFlightListController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SpecificFlightListController">
    <bottom>
       <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -40,22 +41,24 @@
         </menus>
       </MenuBar>
    </top>
-   <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+   <right>
+      <TextArea editable="false" prefHeight="352.0" prefWidth="388.0" BorderPane.alignment="CENTER" />
+   </right>
+   <left>
+      <VBox alignment="CENTER" prefHeight="345.0" prefWidth="308.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="345.0" prefWidth="308.0">
-               <children>
-                  <Label alignment="TOP_LEFT" text="Please Enter Your Flight Number" />
-                  <TextField />
-                  <Button mnemonicParsing="false" text="Display Seating Chart" />
-               </children>
-            </VBox>
-            <VBox prefHeight="345.0" prefWidth="484.0">
-               <children>
-                  <TextArea prefHeight="352.0" prefWidth="388.0" />
-               </children>
-            </VBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reservations for Specific Flight">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Label alignment="TOP_LEFT" text="Please Enter Your Flight Number" />
+            <TextField />
+            <Button mnemonicParsing="false" text="Display Seating Chart" />
          </children>
-      </HBox>
-   </center>
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+      </VBox>
+   </left>
 </BorderPane>
