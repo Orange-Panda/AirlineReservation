@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FlightSeating 
@@ -11,13 +12,9 @@ public class FlightSeating
 	public static final String seatingFormat = "%2s -%1s-%1s-   %1s-%1s-%1s   -%1s-%1s-%n";
 	
 	//Generates a seating chart file for the argument flight.
-    public static void generateFlightSeatingFile(Flight flight)
+    public static void generateFlightSeatingFile(boolean[][] seating, String flightName)
     {
-        File file = new File(flight.getFlightNumber() + ".txt");
-        
-		boolean[][] seating = new boolean[10][7];
-		
-		seating = generateRandomSeating(flight);
+        File file = new File(flightName + ".txt");
 		
         try
         {
@@ -124,7 +121,7 @@ public class FlightSeating
 
         if(file.exists() || file.isDirectory()) 
 		{ 
-		    return generateFlightSeatingChart(parseFlightSeating(flightName));
+		    return getSeatingChart(parseFlightSeating(flightName));
 		}
         else
         {
@@ -132,7 +129,7 @@ public class FlightSeating
         }
     }
     
-    public static String generateFlightSeatingChart(boolean[][] seating)
+    public static String getSeatingChart(boolean[][] seating)
     {
     	String seatingChart = "";
     	for(int i = 0; i < 10; i++)
@@ -154,26 +151,45 @@ public class FlightSeating
     {
     	return isTaken ? 'X' : (char)(64 + value);
     }
-
-	public static boolean reserveSeat(Flight flight, String seatNumber) 
+	
+	
+	public static boolean reserveSeat(String seatNumber, String flightNumber) 
 	{
 		try
 		{
-			boolean[][] seating = parseFlightSeating(flight.getFlightNumber());
-			int i = Integer.parseInt(seatNumber.replaceAll("\\D+",""));
-			char[] seatChars = seatNumber.toCharArray();
-			int j = seatChars[seatChars.length - 1] - 64;
+    		List<Flight> flights = Flight.parseFlightsText();
 			
-			if(seating[i][j] == false)
-			{
-				seating[i][j] = true;
-				flight.setSeatsAvailable(flight.getSeatsAvailable() - 1);
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			for(int f = 0; f < flights.size(); f++)
+    		{
+    			System.out.printf("Checking %s to %s%n", flights.get(f).getFlightNumber(), flightNumber);
+				
+				if(flights.get(f).getFlightNumber().equals(flightNumber))
+    			{
+	    			System.out.printf("Confirmed %s to %s%n", flights.get(f).getFlightNumber(), flightNumber);
+					boolean[][] seating = parseFlightSeating(flights.get(f).getFlightNumber());
+    				int i = (Integer.parseInt(seatNumber.replaceAll("\\D+","")) - 1);
+    				int j = seatNumber.replaceAll("\\d+","").toUpperCase().charAt(0) - 65;;
+    				
+    				System.out.printf("Input [%d][%d]%n", i, j);
+    				
+    				if(seating[i][j] == false)
+    				{
+    					System.out.println("Set true");
+    					seating[i][j] = true;
+    					FlightSeating.generateFlightSeatingFile(seating, flights.get(f).getFlightNumber());;
+    					flights.get(f).setSeatsAvailable(flights.get(f).getSeatsAvailable() - 1);
+    					Flight.writeFlightsText(flights);
+    					return true;
+    				}
+    				else
+    				{
+    					System.out.println("Set false");
+    					return false;
+    				}
+    			}
+    		}
+			
+			return false;
 		}
 		catch(Exception e)
 		{

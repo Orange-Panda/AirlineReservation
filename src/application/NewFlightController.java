@@ -68,7 +68,7 @@ public class NewFlightController extends MainController
     	List<Flight> flights = Flight.parseFlightsText();
     	flights.add(flightToAdd);
 		console.setText(Flight.writeFlightsText(flights));
-		FlightSeating.generateFlightSeatingFile(flightToAdd);
+		FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(flightToAdd), flightToAdd.getFlightNumber());
     }
     
     //Resets the current list of flights to the default flights
@@ -77,7 +77,7 @@ public class NewFlightController extends MainController
     	console.setText(Flight.writeFlightsText(Flight.defaultFlights));
 		for(Flight flight : Flight.defaultFlights)
 		{
-			FlightSeating.generateFlightSeatingFile(flight);
+			FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(flight), flight.getFlightNumber());
 		}
     }
 	

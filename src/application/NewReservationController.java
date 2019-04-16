@@ -23,22 +23,11 @@ public class NewReservationController extends MainController
     {
     	try
     	{
-    		List<Flight> flights = Flight.parseFlightsText();
-    		
     		Reservation newReservation = new Reservation( 
     				inputPassengerID.getText(), inputPassengerName.getText(),
     				inputSeatNumber.getText(), inputFlightNumber.getText());
     		
-    		for(Flight flight : flights)
-    		{
-    			if(flight.getFlightNumber() == newReservation.getFlightNumber())
-    			{
-    				if(FlightSeating.reserveSeat(flight, newReservation.getSeatNumber()))
-    				{
-    					Flight.writeFlightsText(flights);
-    				}
-    			}
-    		}
+    		FlightSeating.reserveSeat(newReservation.getSeatNumber(), newReservation.getFlightNumber());
     	}
     	catch(Exception e)
     	{
