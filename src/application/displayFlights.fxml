@@ -7,7 +7,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -16,17 +15,20 @@
    <center>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Display Flight Details" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Display Flight Details">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
             <TextArea fx:id="flightInfo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="1080.0" prefWidth="1920.0" promptText="Press generate to view flights...">
                <font>
-                  <Font name="Monospaced Regular" size="12.0" />
+                  <Font name="Monospaced Regular" size="10.0" />
                </font></TextArea>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
-               <children>
-                  <Button fx:id="readFlights" mnemonicParsing="false" onAction="#readFlightData" text="Generate" />
-                  <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" textFill="#6b1717" />
-               </children>
-            </HBox>
+            <Button fx:id="readFlights" mnemonicParsing="false" onAction="#readFlightData" text="Generate" textFill="#004800">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Menu" textFill="#6b1717" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

@@ -17,6 +17,11 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="3.0" BorderPane.alignment="CENTER">
          <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Flight">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
             <Text layoutX="299.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Number" />
             <TextField fx:id="inputFlightNumber" alignment="CENTER" layoutX="235.0" layoutY="194.0" maxWidth="150.0" promptText="AA0000" />
             <Text layoutX="299.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departure City" />

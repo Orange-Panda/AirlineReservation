@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DisplayPassengersController">
    <top>
@@ -29,7 +34,26 @@
         </menus>
       </MenuBar>
    </top>
-   <bottom>
-      <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" BorderPane.alignment="CENTER" />
-   </bottom>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="View Passengers">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="inputFlightNumber" maxWidth="200.0" promptText="Please enter flight number..." />
+            <Button mnemonicParsing="false" onAction="#showFlightReservation" text="Generate" textFill="#095300" />
+            <TextArea fx:id="console" editable="false" maxWidth="450.0" prefHeight="200.0" prefWidth="200.0" promptText="Enter a flight number and press generate to view flight passenger chart.">
+               <font>
+                  <Font name="Monospaced Regular" size="12.0" />
+               </font>
+            </TextArea>
+            <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" textFill="#5e0b0b" />
+         </children>
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+      </VBox>
+   </center>
 </BorderPane>
