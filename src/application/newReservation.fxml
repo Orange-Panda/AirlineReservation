@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewReservationController">
@@ -42,21 +43,25 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Number" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField maxWidth="200.0" />
-                        <Button mnemonicParsing="false" text="&gt;" />
+                        <TextField fx:id="inputFlightNumber" maxWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#showFlightReservation" text="&gt;" />
                      </children>
                   </HBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passenger ID" />
-                  <TextField maxWidth="200.0" />
+                  <TextField fx:id="inputPassengerID" maxWidth="200.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passenger Name" />
-                  <TextField maxWidth="200.0" />
+                  <TextField fx:id="inputPassengerName" maxWidth="200.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seat Number" />
-                  <TextField maxWidth="200.0" />
+                  <TextField fx:id="inputSeatNumber" maxWidth="200.0" />
+                  <Button layoutX="40.0" layoutY="286.0" mnemonicParsing="false" onAction="#addReservation" text="Add Reservation" />
                   <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" />
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
             </VBox>
-            <TextArea maxWidth="350.0" />
+            <TextArea fx:id="console" maxWidth="350.0">
+               <font>
+                  <Font name="Monospaced Regular" size="16.0" />
+               </font></TextArea>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

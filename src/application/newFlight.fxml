@@ -63,7 +63,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Main Menu" textFill="#6e1414" />
-                  <Button mnemonicParsing="false" onAction="#addFlight" text="Add Flight" textFill="#4f6b4f" />
+                  <Button mnemonicParsing="false" onAction="#getFlightFromButton" text="Add Flight" textFill="#4f6b4f" />
                   <Button layoutX="190.0" layoutY="10.0" mnemonicParsing="false" onAction="#resetFlightsTxt" text="Reset File" textFill="RED" />
                </children>
             </HBox>

@@ -1,5 +1,7 @@
 package application;
 
+import java.io.File;
+import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.time.*;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.Scanner;
 
 public class Flight 
 {
+    public static final String flightFileFormat = "%8s\t%12s\t%10s\t%8s\t%16s\t%10s\t%6s";
+
 	//Private Flight variables
 	private String flightNumber;
 	private LocalDate flightDate;
@@ -18,13 +22,14 @@ public class Flight
 	private String destinationCity;
 	private int seatsAvailable;
 	
+	//List of default flights required
 	public static final List<Flight> defaultFlights = new ArrayList<Flight>(Arrays.asList(
 			new Flight("AA1150", LocalDate.of(2015, 12, 20), LocalTime.of(23, 0), LocalTime.of(2, 0), "FORT WAYNE", "ORLANDO", 70),
 	        new Flight("AA1230", LocalDate.of(2015, 11, 5), LocalTime.of(11, 30), LocalTime.of(14, 0), "BLACKSBURG", "BOCA RATON", 25),
 	        new Flight("AA1140", LocalDate.of(2015, 1, 4), LocalTime.of(7, 0), LocalTime.of(11, 0), "SEATTLE", "PHOENIX", 42)
 		));
 		
-	
+	//Constructor for flight using native data types.
 	public Flight(String flightNumber, LocalDate flightDate, LocalTime arrivalTime, LocalTime departureTime, String departureCity, String destinationCity, int seatsAvailable)
 	{
 		flightNumber = flightNumber.replaceAll(" ", "").toUpperCase();
@@ -39,6 +44,7 @@ public class Flight
 		setSeatsAvailable(seatsAvailable);
 	}
 	
+	//Constructor for flight using only Strings, will parse strings for the data required. If it fails to do so will initialize with invalid data.
 	public Flight(String flightNumber, String flightDate, String departureTime, String arrivalTime, String departureCity, String destinationCity, String seatsAvailable) 
 	{
 		seatsAvailable = seatsAvailable.replaceAll(" ", "");
@@ -128,6 +134,43 @@ public class Flight
 		return flights;
     }
 	
+    //Writes to flights.txt, will return a string about the result.
+    public static String writeFlightsText(List<Flight> flights)
+    {
+    	File file = new File("flights.txt");
+		try
+		{
+			PrintWriter output = new PrintWriter(file);
+			output.print("");
+			output.println(String.format(flightFileFormat, "Flight #", "Flight Date", "Departure", "Arrival", "Departure City", "Destination", "Seats"));
+			for(Flight flight : flights)
+			{
+				output.println(String.format(flightFileFormat, 
+						flight.getFlightNumber(), flight.getFlightDate().toString(), flight.getDepartureTime().toString(), 
+						flight.getArrivalTime().toString(), flight.getDepartureCity(), flight.getDestinationCity(), flight.getSeatsAvailable()));
+			}
+			output.close();
+			return String.format("flights.txt located at %s has been updated!", file.getAbsolutePath());
+		}
+		catch(Exception fileNotFoundFlights)
+		{
+			return "Unable to properly save flights.txt";
+		}
+    }
+    
+    public static Flight findFlight(String flightNumber)
+    {
+    	List<Flight> flights = parseFlightsText();
+    	for(Flight flight : flights)
+    	{
+    		if(flight.getFlightNumber() == flightNumber)
+    		{
+    			return flight;
+    		}
+    	}
+    	return null;
+    }
+    
 	// Get and Set Methods
 	public String getFlightNumber() 
 	{
