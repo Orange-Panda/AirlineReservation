@@ -1,6 +1,7 @@
 package application;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class FlightSeating 
 {
 	public static final String seatingFormat = "%2s -%1s-%1s-   %1s-%1s-%1s   -%1s-%1s-%n";
+	public static final String reservationFormat = "%8s  %4s  %16s  %16s%n"; //Flight, seat, name, id
 	
 	//Generates a seating chart file for the argument flight.
     public static void generateFlightSeatingFile(boolean[][] seating, String flightName)
@@ -152,7 +154,6 @@ public class FlightSeating
     	return isTaken ? 'X' : (char)(64 + value);
     }
 	
-	
 	public static boolean reserveSeat(String seatNumber, String flightNumber) 
 	{
 		try
@@ -196,5 +197,41 @@ public class FlightSeating
 			System.out.println("Bad input");
 			return false;
 		}
+	}
+	
+	public static void addReservation(Reservation reservation)
+	{
+        File file = new File("reservations.txt");
+        
+        if(!file.exists())
+        {
+        	resetReservationsTxt();
+        }
+        
+        try
+        {
+        	PrintWriter output = new PrintWriter(new FileWriter(file, true));
+        	output.print(String.format(reservationFormat, reservation.getFlightNumber(), reservation.getSeatNumber(), reservation.getPassengerName(), reservation.getPassengerID()));
+            output.close();
+        }
+        catch(Exception e)
+        {
+        	return;
+        }
+	}
+	
+	public static void resetReservationsTxt() 
+	{
+        File file = new File("reservations.txt");
+        try
+        {
+        	PrintWriter output = new PrintWriter(file);
+        	output.print(String.format(reservationFormat, "Flight #", "Seat", "Legal Name", "ID"));
+            output.close();
+        }
+        catch(Exception e)
+        {
+        	return;
+        }
 	}
 }

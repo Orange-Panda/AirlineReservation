@@ -58,7 +58,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" />
                </children>
             </VBox>
-            <TextArea fx:id="console" maxWidth="350.0">
+            <TextArea fx:id="console" maxWidth="350.0" wrapText="true">
                <font>
                   <Font name="Monospaced Regular" size="16.0" />
                </font></TextArea>

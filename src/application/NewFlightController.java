@@ -79,6 +79,7 @@ public class NewFlightController extends MainController
 		{
 			FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(flight), flight.getFlightNumber());
 		}
+		FlightSeating.resetReservationsTxt();
     }
 	
 	public void goToMainMenu()

@@ -23,11 +23,23 @@ public class NewReservationController extends MainController
     {
     	try
     	{
+    		if(inputPassengerName.getText().isEmpty() || inputPassengerID.getText().isEmpty())
+    		{
+    			console.setText("Please enter your name and ID.");
+    			return;
+    		}
+    		
     		Reservation newReservation = new Reservation( 
     				inputPassengerID.getText(), inputPassengerName.getText(),
     				inputSeatNumber.getText(), inputFlightNumber.getText());
     		
-    		FlightSeating.reserveSeat(newReservation.getSeatNumber(), newReservation.getFlightNumber());
+    		boolean seatChanged = FlightSeating.reserveSeat(newReservation.getSeatNumber(), newReservation.getFlightNumber());
+    		showFlightReservation();
+    		console.setText(console.getText() + (seatChanged ? "\nSeat added, thanks for booking with us!" : "\nSeat is unavailable. Please check if the seat you are trying to reserve is not aready taken."));
+    		if(seatChanged)
+    		{
+    			FlightSeating.addReservation(newReservation);
+    		}
     	}
     	catch(Exception e)
     	{
