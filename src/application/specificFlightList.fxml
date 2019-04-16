@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SpecificFlightListController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SpecificFlightListController">
    <bottom>
-      <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin></Button>
    </bottom>
    <top>
       <MenuBar BorderPane.alignment="CENTER">
@@ -32,4 +40,22 @@
         </menus>
       </MenuBar>
    </top>
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="345.0" prefWidth="308.0">
+               <children>
+                  <Label alignment="TOP_LEFT" text="Please Enter Your Flight Number" />
+                  <TextField />
+                  <Button mnemonicParsing="false" text="Display Seating Chart" />
+               </children>
+            </VBox>
+            <VBox prefHeight="345.0" prefWidth="484.0">
+               <children>
+                  <TextArea prefHeight="352.0" prefWidth="388.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
 </BorderPane>
