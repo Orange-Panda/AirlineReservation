@@ -5,11 +5,10 @@ import java.time.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+/**Responsible for controlling the FXML page for creating a new flight*/
 public class NewFlightController extends MainController
 {
-    
-	//public static Flight[] flights = new Flight[10];
-	@FXML
+   	@FXML
 	private TextField inputFlightNumber;
 	@FXML
 	private DatePicker inputFlightDate;
@@ -30,21 +29,37 @@ public class NewFlightController extends MainController
 	@FXML
 	private TextField console;	
     
-	//Adds a flight to the current file by reading input and then calling updateFlightsTxt.
+	/**Adds a flight to the current file by reading input and then calling updateFlightsTxt.*/
     public void getFlightFromButton()
     {
     	try
     	{
     		Flight newFlight = new Flight(
-    				inputFlightNumber.getText(), 
+    				inputFlightNumber.getText().replaceAll("[^A-Za-z0-9]", ""), 
     				inputFlightDate.getValue(), 
     				LocalTime.of(Integer.parseInt(inputDepartureHour.getText()), Integer.parseInt(inputDepartureMinute.getText())), 
     				LocalTime.of(Integer.parseInt(inputArrivalHour.getText()), Integer.parseInt(inputArrivalMinute.getText())), 
-    				inputDepartureCity.getText(), 
-    				inputArrivalCity.getText(), 
+    				inputDepartureCity.getText().replaceAll("[^A-Za-z0-9]", ""), 
+    				inputArrivalCity.getText().replaceAll("[^A-Za-z0-9]", ""), 
     				Integer.parseInt(inputNumOfSeats.getText())
     				);
+    		for(Flight flight : Flight.parseFlightsText())
+    		{
+        		if(newFlight.getFlightNumber().equalsIgnoreCase(flight.getFlightNumber()))
+        		{
+            		console.setText("Flight with that number already exists.");
+            		return;
+        		}
+    		}
     		addFlight(newFlight);
+    		inputFlightNumber.clear();
+    		inputDepartureHour.clear();
+    		inputDepartureMinute.clear();
+    		inputArrivalHour.clear();
+    		inputArrivalMinute.clear();
+    		inputDepartureCity.clear();
+    		inputArrivalCity.clear();
+    		inputNumOfSeats.clear();
     	}
     	catch(Exception e)
     	{
@@ -52,7 +67,7 @@ public class NewFlightController extends MainController
     	}
     }
     
-    //Updates the flights text by parsing the current file, if one exists, gathering the current flights then generating a new file with the argument flight added.
+    /**Updates the flights text by parsing the current file, if one exists, gathering the current flights then generating a new file with the argument flight added.*/
     public void addFlight(Flight flightToAdd)
     {
     	List<Flight> flights = Flight.parseFlightsText();
@@ -61,7 +76,7 @@ public class NewFlightController extends MainController
 		FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(flightToAdd), flightToAdd.getFlightNumber());
     }
     
-    //Resets the current list of flights to the default flights
+    /**Resets the current list of flights to the default flights*/
     public void resetFlightsTxt()
     {
     	console.setText(Flight.writeFlightsText(Flight.defaultFlights));
@@ -69,9 +84,10 @@ public class NewFlightController extends MainController
 		{
 			FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(flight), flight.getFlightNumber());
 		}
-		FlightSeating.resetReservationsTxt();
+		Reservation.resetReservationsTxt();
     }
 	
+    /**Returns the application to the main menu.*/
 	public void goToMainMenu()
 	{
 		changeScene("mainMenu");

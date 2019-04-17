@@ -1,19 +1,16 @@
 package application;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class FlightSeating 
 {
 	public static final String seatingFormat = "%2s -%1s-%1s-   %1s-%1s-%1s   -%1s-%1s-%n";
-	public static final String reservationFormat = "%8s\t%4s\t%16s\t%16s%n"; //Flight, seat, name, id
 	
-	//Generates a seating chart file for the argument flight.
+	/**Generates a seating chart file for the argument flight.*/
     public static void generateFlightSeatingFile(boolean[][] seating, String flightName)
     {
         File file = new File(flightName + ".txt");
@@ -43,6 +40,7 @@ public class FlightSeating
         }
     }
     
+    /**Returns a 2D array of the seating for the flight. If no flight is found will return a default 2D array.*/
     public static boolean[][] parseFlightSeating(String flightName)
     {
     	boolean[][] seating = new boolean[10][7];
@@ -80,6 +78,7 @@ public class FlightSeating
 		return seating;
     }
     
+    /**Creates a random seating chart based off the amount of seats open for the flight.*/
     public static boolean[][] generateRandomSeating(Flight flight) 
     {
     	boolean[][] seating = new boolean[10][7];
@@ -117,6 +116,7 @@ public class FlightSeating
 		return seating;
 	}
     
+    /**Returns a long String for the flight with the name input. If no flight is found will return a string stating a flight was not found.*/
     public static String getSeatingChart(String flightName)
     {
         File file = new File(flightName + ".txt");
@@ -131,6 +131,7 @@ public class FlightSeating
         }
     }
     
+    /**Returns a String as a seating chart for the 2D boolean array.*/
     public static String getSeatingChart(boolean[][] seating)
     {
     	String seatingChart = "";
@@ -149,11 +150,13 @@ public class FlightSeating
     	return seatingChart;
     }
     
+    /**Returns a char for the seat index or an X char if seat is taken.*/
 	public static char getSeatChar(boolean isTaken, int value)
     {
     	return isTaken ? 'X' : (char)(64 + value);
     }
 	
+	/**Tries to reserve a seat at the input seat number for the input flight.*/
 	public static boolean reserveSeat(String seatNumber, String flightNumber) 
 	{
 		try
@@ -197,94 +200,5 @@ public class FlightSeating
 			System.out.println("Bad input");
 			return false;
 		}
-	}
-	
-	public static void addReservation(Reservation reservation)
-	{
-        File file = new File("reservations.txt");
-        
-        if(!file.exists())
-        {
-        	resetReservationsTxt();
-        }
-        
-        try
-        {
-        	PrintWriter output = new PrintWriter(new FileWriter(file, true));
-        	output.print(String.format(reservationFormat, reservation.getFlightNumber(), reservation.getSeatNumber(), reservation.getPassengerName(), reservation.getPassengerID()));
-            output.close();
-        }
-        catch(Exception e)
-        {
-        	return;
-        }
-	}
-	
-	public static void resetReservationsTxt() 
-	{
-        File file = new File("reservations.txt");
-        try
-        {
-        	PrintWriter output = new PrintWriter(file);
-        	output.print(String.format(reservationFormat, "Flight #", "Seat", "Legal Name", "ID"));
-            output.close();
-        }
-        catch(Exception e)
-        {
-        	return;
-        }
-	}
-	
-	public static List<Reservation> parseReservationsTxt()
-	{
-        List<Reservation> reservations = new ArrayList<Reservation>();
-        
-		try(Scanner input = new Scanner(Paths.get("reservations.txt"), "UTF-8"))
-		{
-			try
-			{
-				//Skips the first few lines because their result is already accounted for.
-				input.nextLine();
-			}
-			catch(Exception e)
-			{
-				System.out.println("Insufficient lines found in flights.txt.");
-				return reservations;
-			}
-			
-			//For debug purposes
-			int lineNumber = 2;
-			
-			while (input.hasNextLine())
-			{
-				try
-				{
-					//For every line, use the tab character to extrapolate the data of the flight
-					String currentLine = input.nextLine();
-					String[] currentReserve = currentLine.split("\t");
-					for(int i = 0; i < currentReserve.length; i++)
-					{
-						currentReserve[i] = currentReserve[i].replaceAll(" ", "");
-					}
-					
-					reservations.add(new Reservation(
-		    				currentReserve[3], currentReserve[2], 
-		    				currentReserve[1], currentReserve[0]));
-					lineNumber++;
-				}
-				catch(Exception e)
-				{
-					System.out.printf("Invalid formatting in reservations.txt at index #%d - %s%n", lineNumber, e.getMessage());
-					lineNumber++;
-				}
-			}
-			input.close();
-		}
-		catch(Exception e)
-		{
-			System.out.printf("Was unable to parse reservations.txt: %s%n", e.getMessage());
-		}
-		
-		return reservations;
 	}
 }

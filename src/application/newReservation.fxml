@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,27 +10,6 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewReservationController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
    <left>
       <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="265.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
@@ -45,19 +21,24 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Flight Number" />
             <HBox alignment="CENTER">
                <children>
-                  <TextField fx:id="inputFlightNumber" maxWidth="200.0" />
+                  <TextField fx:id="inputFlightNumber" maxWidth="200.0" promptText="AA0123" />
                   <Button mnemonicParsing="false" onAction="#showFlightReservation" text="&gt;" />
                </children>
             </HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passenger ID" />
-            <TextField fx:id="inputPassengerID" maxWidth="200.0" />
+            <TextField fx:id="inputPassengerID" maxWidth="200.0" promptText="U3829" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passenger Name" />
-            <TextField fx:id="inputPassengerName" maxWidth="200.0" />
+            <TextField fx:id="inputPassengerName" maxWidth="200.0" promptText="John Appleseed" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seat Number" />
-            <TextField fx:id="inputSeatNumber" maxWidth="200.0" />
-            <Button layoutX="40.0" layoutY="286.0" mnemonicParsing="false" onAction="#addReservation" text="Add Reservation" />
-            <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" />
-            <HBox prefHeight="40.0" prefWidth="265.0" />
+            <TextField fx:id="inputSeatNumber" maxWidth="200.0" promptText="5D" />
+            <Button layoutX="40.0" layoutY="286.0" mnemonicParsing="false" onAction="#addReservation" text="Reserve Flight">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button mnemonicParsing="false" onAction="#goToMainMenu" text="Return to Menu" textFill="#3f0000">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
          </children>
       </VBox>
    </left>

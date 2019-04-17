@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**Entry point for the application.*/
 public class Main extends Application 
 {
 	private static Scene scene;

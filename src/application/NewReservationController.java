@@ -3,6 +3,7 @@ package application;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+/**Responsible for controlling the FXML page for making reservations.*/
 public class NewReservationController extends MainController
 {
     @FXML
@@ -16,6 +17,7 @@ public class NewReservationController extends MainController
     @FXML
     public TextArea console;
     
+    /**Uses the input fields to create a reservation and add it to the resevations.txt*/
 	public void addReservation()
     {
     	try
@@ -35,20 +37,25 @@ public class NewReservationController extends MainController
     		console.setText(console.getText() + (seatChanged ? "\nSeat added, thanks for booking with us!" : "\nSeat is unavailable. Please check if the seat you are trying to reserve is not aready taken."));
     		if(seatChanged)
     		{
-    			FlightSeating.addReservation(newReservation);
+    			Reservation.addReservation(newReservation);
+    	    	inputSeatNumber.clear();
+    	    	inputPassengerID.clear();
+    	    	inputPassengerName.clear();
     		}
     	}
     	catch(Exception e)
     	{
-    		e.printStackTrace();
+			console.setText("Was unable to create your reservation.");
     	}
     }
 	
+	/**Prints the flight seating chart to the textArea.*/
 	public void showFlightReservation()
 	{
 		console.setText(FlightSeating.getSeatingChart(inputFlightNumber.getText()));
 	}
 	
+    /**Returns the application to the main menu.*/
 	public void goToMainMenu()
 	{
 		changeScene("mainMenu");
