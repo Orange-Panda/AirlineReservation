@@ -42,7 +42,7 @@
       </MenuBar>
    </top>
    <right>
-      <TextArea editable="false" prefHeight="352.0" prefWidth="388.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textArea" editable="false" prefHeight="352.0" prefWidth="388.0" BorderPane.alignment="CENTER" />
    </right>
    <left>
       <VBox alignment="CENTER" prefHeight="345.0" prefWidth="308.0" spacing="10.0" BorderPane.alignment="CENTER">
@@ -53,8 +53,8 @@
                </font>
             </Text>
             <Label alignment="TOP_LEFT" text="Please Enter Your Flight Number" />
-            <TextField />
-            <Button mnemonicParsing="false" text="Display Seating Chart" />
+            <TextField fx:id="inputFlightNumber" />
+            <Button mnemonicParsing="false" onAction="#displayFlightSeats" text="Display Seating Chart" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

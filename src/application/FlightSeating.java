@@ -268,8 +268,8 @@ public class FlightSeating
 					}
 					
 					reservations.add(new Reservation(
-		    				currentReserve[0], currentReserve[1], 
-		    				currentReserve[2], currentReserve[3]));
+		    				currentReserve[3], currentReserve[2], 
+		    				currentReserve[1], currentReserve[0]));
 					lineNumber++;
 				}
 				catch(Exception e)
