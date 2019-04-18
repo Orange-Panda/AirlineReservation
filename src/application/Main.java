@@ -1,5 +1,7 @@
 package application;
 	
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -21,6 +23,12 @@ public class Main extends Application
 		primaryStage.show();
 		primaryStage.setMinWidth(650);
 		primaryStage.setMinHeight(450);
+		File file = new File("flights.txt");
+        
+        if(!file.exists())
+        {
+        	Flight.resetFlightsText();
+        }
 	}
 	
 	public static void main(String[] args) 

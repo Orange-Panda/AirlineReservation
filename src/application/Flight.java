@@ -13,7 +13,15 @@ import java.util.Scanner;
 public class Flight 
 {
     public static final String flightFileFormat = "%8s\t%12s\t%10s\t%8s\t%16s\t%10s\t%6s";
-
+    public static final String[] flightPrefix = new String[] { 
+    		"AC1", "NZ1", "D71", "AS1", "AA1", "CP1", "BA1", "CI1", "DL1", "EY1", "BR1", "EK1", "HA1", "JL1", "B61", "MH1", "QR1", "WN1", "UA1", "VS1", "WS1"
+			};
+    public static final String[] airports = new String[] {
+    		"ATLANTA", "LOS ANGELES", "CHICAGO", "DALLAS", "DENVER", "NEW YORK", "SAN FRANCISCO", "LAS VEGAS", "SEATTLE", "CHARLOTTE", "NEWARK",
+    		"ORLANDO", "PHOENIX", "MIAMI", "HOUSTON", "BOSTON", "MINNEAPOLIS", "DETROIT", "FORT LAUDERDALE", "PHILADELPHIA", "BALTIMORE", "SALT LAKE CITY",
+    		"WASHINGTON D.C.", "SAN DIEGO", "TAMPA", "HONOLULU", "PORTLAND", "NASHVILLE", "AUSTIN", "ST. LOUIS", "SAN JOSE", "OAKLAND", "SACRAMENTO", "KANSAS CITY"
+    		};
+    
 	//Private Flight variables
 	private String flightNumber;
 	private LocalDate flightDate;
@@ -25,9 +33,9 @@ public class Flight
 	
 	/**List of default flights required*/
 	public static final List<Flight> defaultFlights = new ArrayList<Flight>(Arrays.asList(
-			new Flight("AA1150", LocalDate.of(2015, 12, 20), LocalTime.of(23, 0), LocalTime.of(2, 0), "FORT WAYNE", "ORLANDO", 70),
-	        new Flight("AA1230", LocalDate.of(2015, 11, 5), LocalTime.of(11, 30), LocalTime.of(14, 0), "BLACKSBURG", "BOCA RATON", 25),
-	        new Flight("AA1140", LocalDate.of(2015, 1, 4), LocalTime.of(7, 0), LocalTime.of(11, 0), "SEATTLE", "PHOENIX", 42)
+			new Flight("AA1150", LocalDate.of(2015, 12, 20), LocalTime.of(2, 0), LocalTime.of(23, 0), "FORT WAYNE", "ORLANDO", 70),
+	        new Flight("AA1230", LocalDate.of(2015, 11, 5), LocalTime.of(14, 0), LocalTime.of(11, 30), "BLACKSBURG", "BOCA RATON", 25),
+	        new Flight("AA1140", LocalDate.of(2015, 1, 4), LocalTime.of(11, 0), LocalTime.of(7, 0), "SEATTLE", "PHOENIX", 42)
 		));
 		
 	/**Constructor for flight using native data types.*/
@@ -184,6 +192,11 @@ public class Flight
 		this.flightNumber = flightNumber;
 	}
 	
+	public static String randomFlightNumber()
+	{
+		return String.format("%s%03d", flightPrefix[(int)Math.floor(Math.random() * flightPrefix.length)], (int)Math.ceil(Math.random() * 999));
+	}
+	
 	public LocalDate getFlightDate() 
 	{
 		return flightDate;
@@ -214,6 +227,11 @@ public class Flight
 		this.departureTime = departureTime;
 	}
 	
+	public static String randomCity()
+	{
+		return airports[(int)Math.floor(Math.random() * airports.length)];
+	}
+	
 	public String getDepartureCity() 
 	{
 		return departureCity;
@@ -241,6 +259,33 @@ public class Flight
 	
 	public void setSeatsAvailable(int seatsAvailable) 
 	{
-		this.seatsAvailable = Math.min(Math.abs(seatsAvailable), 70);
+		this.seatsAvailable = Math.min(Math.max(seatsAvailable, 0), 70);
+	}
+
+	public static void resetFlightsText() 
+	{
+    	Reservation.resetReservationsTxt();
+    	Flight.writeFlightsText(Flight.defaultFlights);
+		for(Flight flight : Flight.defaultFlights)
+		{
+			FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(flight), flight.getFlightNumber());
+		}
+    	List<Flight> flights = Flight.parseFlightsText();		//Adds random flights.
+		for(int i = 0; i < 16; i++)
+		{
+			LocalTime randomTime = LocalTime.of((int)Math.floor(Math.random() * 24), (int)Math.floor(Math.random() * 60));
+			LocalTime altRandomTime = LocalTime.of((int)Math.floor(Math.random() * 24), (int)Math.floor(Math.random() * 60));
+			Flight randomFlight = new Flight(
+					Flight.randomFlightNumber(), 
+					LocalDate.now(),
+					randomTime.compareTo(altRandomTime) > 0 ? randomTime : altRandomTime, 
+					randomTime.compareTo(altRandomTime) > 0  ? altRandomTime : randomTime, 
+					Flight.randomCity(), 
+					Flight.randomCity(), 
+					(int)Math.floor(Math.random() * 71));
+	    	flights.add(randomFlight);
+			FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(randomFlight), randomFlight.getFlightNumber());
+		}
+		Flight.writeFlightsText(flights);
 	}
 }

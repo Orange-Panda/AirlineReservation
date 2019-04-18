@@ -30,7 +30,7 @@ public class Reservation
 	/**Adds a reservation to the reservations.txt*/
 	public static void addReservation(Reservation reservation)
 	{
-        File file = new File("reservations.txt");
+		File file = new File("reservations.txt");
         
         if(!file.exists())
         {
@@ -95,7 +95,7 @@ public class Reservation
 					String[] currentReserve = currentLine.split("\t");
 					for(int i = 0; i < currentReserve.length; i++)
 					{
-						currentReserve[i] = currentReserve[i].replaceAll(" ", "");
+						//currentReserve[i] = currentReserve[i].replaceAll(" ", "");
 					}
 					
 					reservations.add(new Reservation(

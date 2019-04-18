@@ -9,6 +9,19 @@ import java.util.Scanner;
 public class FlightSeating 
 {
 	public static final String seatingFormat = "%2s -%1s-%1s-   %1s-%1s-%1s   -%1s-%1s-%n";
+	public static final String[] firstNames = new String[] 
+			{
+					"James", "John", "Robert", "Michael", "William", "David", "Richard", "Joseph", "Thomas", "Charles",
+					"Mary", "Patrick", "Jennifer", "Linda", "Eli", "Barbara", "Susan", "Jessica", "Sarah", "Emily",
+					"Jackson", "Martin", "Gary", "Eric", "Luke", "Cobey", "Marco", "Daniel", "Mark", "Leeroy"
+			};
+	public static final String[] lastNames = new String[] 
+			{
+					"Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Moore", "White", "Harris",
+					"Thompson", "Garcia", "Rodriguez", "Young", "Allen", "Lopez", "Adams", "Edwards", "Cox", "Howard",
+					"Mirman", "Gragg", "Ward", "Jenkins", "Gomez", "Dixon", "Grant", "Mills", "Payne", "Ray", "Sipe"
+			};
+	
 	
 	/**Generates a seating chart file for the argument flight.*/
     public static void generateFlightSeatingFile(boolean[][] seating, String flightName)
@@ -84,19 +97,18 @@ public class FlightSeating
     	boolean[][] seating = new boolean[10][7];
     	int seatsToOpen = Math.min(Math.max(flight.getSeatsAvailable(), 0), 70);
 		int seatsToClose = Math.abs(70 - seatsToOpen);
-    	boolean openingClosedSeats = seatsToOpen <= 35;
 		
     	//Reset array to value
 		for(int i = 0; i < 10; i++)
 		{
 			for(int j = 0; j < 7; j++)
 			{
-				seating[i][j] = openingClosedSeats;
+				seating[i][j] = false;
 			}
 		}
 				
-		int seatsToModify = openingClosedSeats ? seatsToOpen : seatsToClose;
-		
+		int seatsToModify = seatsToClose;
+		int checks = 0;
 		// Iterate by chance occupy/open seats.
 		while(seatsToModify > 0)
 		{
@@ -105,16 +117,40 @@ public class FlightSeating
 			{
 				for(int j = 0; j < 7; j++)
 				{
-					if(seating[i][j] == openingClosedSeats && seatsToModify > 0 && Math.random() < 0.4f)
+					checks++;
+					//Goes through each seat and if there are still seats to assign and the current seat is open has a chance to reserve a seat. 
+					// Chance is proportional to the number of seats it will be assigning. The more seat to assign the more probable.
+					if(seating[i][j] == false && seatsToModify > 0 && Math.random() < (Math.abs(seatsToClose / 70) * 0.5f + 0.5f)) 
 					{
-						seating[i][j] = !openingClosedSeats;
+						//Remove seat availability
+						seating[i][j] = true;
 						seatsToModify--;
+						//Makes a reservation for a fictional guest
+						Reservation.addReservation(new Reservation(
+								String.format("U%03d-%04d-%03d", (int)Math.ceil(Math.random() * 999), (int)Math.ceil(Math.random() * 9999), (int)Math.ceil(Math.random() * 999)), 
+								generateRandomName(), 
+								String.format("%d%c", i + 1, j + 65), 
+								flight.getFlightNumber()));
 					}
 				}
 			}
 		}
+		
+		System.out.printf("Interated %d times.%n", checks);
 		return seating;
 	}
+    
+    public static String generateRandomName()
+    {
+    	try 
+    	{
+        	return firstNames[(int)Math.floor(Math.random() * firstNames.length)] + " " + lastNames[(int)Math.floor(Math.random() * lastNames.length)];
+    	}
+    	catch(Exception e)
+    	{
+    		return "Luke Mirman";
+    	}
+    }
     
     /**Returns a long String for the flight with the name input. If no flight is found will return a string stating a flight was not found.*/
     public static String getSeatingChart(String flightName)

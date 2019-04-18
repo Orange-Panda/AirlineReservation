@@ -79,12 +79,9 @@ public class NewFlightController extends MainController
     /**Resets the current list of flights to the default flights*/
     public void resetFlightsTxt()
     {
-    	console.setText(Flight.writeFlightsText(Flight.defaultFlights));
-		for(Flight flight : Flight.defaultFlights)
-		{
-			FlightSeating.generateFlightSeatingFile(FlightSeating.generateRandomSeating(flight), flight.getFlightNumber());
-		}
-		Reservation.resetReservationsTxt();
+    	console.setText("Generating flight data. This might take a moment please wait...");
+    	Flight.resetFlightsText();
+		console.setText("Reset complete.");
     }
 	
     /**Returns the application to the main menu.*/
